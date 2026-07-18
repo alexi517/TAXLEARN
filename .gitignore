@@ -1,0 +1,22 @@
+# Virtual environment
+RaG/
+
+# Environment variables / secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Source PDFs and generated data (not committed — external input / regenerable output)
+Data/*.pdf
+Data/chroma_db/
+excluded_pdfs/
+
+# Claude Code session state
+.claude/scheduled_tasks.lock
+
+# OS
+Thumbs.db
+.DS_Store
