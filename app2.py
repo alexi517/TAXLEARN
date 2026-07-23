@@ -12,7 +12,9 @@ RUN:  streamlit run app/streamlit_app.py
 import uuid
 
 import streamlit as st
-
+for _key in ("GROQ_API_KEY", "GOOGLE_API_KEY", "LLAMA_CLOUD_API_KEY"):
+    if _key in st.secrets:
+        os.environ[_key] = st.secrets[_key]
 from llama_index.core.chat_engine import CondensePlusContextChatEngine
 from llama_index.core.memory import ChatMemoryBuffer
 from llama_index.core.postprocessor import SentenceTransformerRerank
