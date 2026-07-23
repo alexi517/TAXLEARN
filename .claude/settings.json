@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(curl -s -w \"\\\\nHTTP_STATUS:%{http_code}\\\\n\" http://127.0.0.1:8000/)",
-      "Bash(\"./RaG/Scripts/python.exe\" -m streamlit run app2.py --server.headless true --server.port 8502)"
-    ]
-  }
-}
