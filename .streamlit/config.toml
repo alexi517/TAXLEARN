@@ -1,0 +1,47 @@
+# TaxLearn brand theme — light, neutral, blue accent.
+# Shared by all apps in this project; app.py/app2.py both fully re-skin
+# themselves via CSS on top of this, but native/unstyled widgets fall back
+# to these values, so base must match what the apps actually look like.
+[theme]
+base = "light"
+primaryColor = "#2F6FED"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F6F7F9"
+codeBackgroundColor = "#F1F3F7"
+textColor = "#14171F"
+linkColor = "#2F6FED"
+borderColor = "#E7E9EE"
+codeTextColor = "#20242E"
+showWidgetBorder = true
+showSidebarBorder = true
+baseRadius = "12px"
+buttonRadius = "10px"
+
+font = "'Inter':https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+headingFont = "'Space Grotesk':https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap"
+codeFont = "'JetBrains Mono':https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+baseFontSize = 15
+baseFontWeight = 400
+headingFontSizes = ["30px", "24px", "20px", "17px", "15px", "13px"]
+headingFontWeights = [600, 600, 600, 500, 500, 500]
+linkUnderline = false
+
+blueColor = "#2F6FED"
+violetColor = "#8B5CF6"
+greenColor = "#16A34A"
+yellowColor = "#D97706"
+orangeColor = "#EA580C"
+redColor = "#DC2626"
+grayColor = "#6B7280"
+
+chartCategoricalColors = ["#2F6FED", "#8B5CF6", "#16A34A", "#D97706", "#DC2626", "#6B7280"]
+
+dataframeBorderColor = "#E7E9EE"
+dataframeHeaderBackgroundColor = "#F6F7F9"
+
+[theme.sidebar]
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F6F7F9"
+textColor = "#14171F"
+borderColor = "#E7E9EE"
+primaryColor = "#2F6FED"

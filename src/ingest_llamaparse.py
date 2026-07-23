@@ -25,7 +25,12 @@ Run with:  python src/ingest.py
 """
 
 import os
+import sys
 from pathlib import Path
+
+# Windows consoles default to a legacy codepage (e.g. cp1252) that can't
+# encode characters like the Naira sign that appear in the parsed PDFs.
+sys.stdout.reconfigure(encoding="utf-8")
 
 import chromadb
 from llama_index.core import (
@@ -41,8 +46,8 @@ from llama_parse import LlamaParse
 # ---------------------------------------------------------------------------
 # CONFIG
 # ---------------------------------------------------------------------------
-DATA_DIR = r"C:\Users\NEW USER\Desktop\Rag_Application\Data"
-CHROMA_DIR = r"C:\Users\NEW USER\Desktop\Rag_Application\Data\chroma_db"
+DATA_DIR = "Data"
+CHROMA_DIR = "chroma_db"
 COLLECTION_NAME = "nigeria_tax"
 
 CHUNK_SIZE = 512

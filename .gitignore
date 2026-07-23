@@ -11,7 +11,7 @@ __pycache__/
 
 # Source PDFs and generated data (not committed — external input / regenerable output)
 Data/*.pdf
-Data/chroma_db/
+session.md
 excluded_pdfs/
 
 # Claude Code session state

@@ -1,0 +1,199 @@
+{
+  "questions": [
+    {
+      "question": "Who is exempt from personal income tax under the new tax law?",
+      "ground_truth": "Individuals earning ≤ ₦800,000 per year are exempt from Personal Income Tax liability.",
+      "category": "factual"
+    },
+    {
+      "question": "What are the four major tax laws signed into law in June 2025?",
+      "ground_truth": "The Nigeria Tax Act (NTA), Nigeria Tax Administration Act (NTAA), Nigeria Revenue Service Act (NRSA), and Joint Revenue Board Act (JRBA).",
+      "category": "factual"
+    },
+    {
+      "question": "What is the role of the Nigeria Revenue Service (NRS)?",
+      "ground_truth": "The NTAA establishes the Nigeria Revenue Service (NRS) as the central body responsible for administering and enforcing company tax matters in Nigeria.",
+      "category": "factual"
+    },
+    {
+      "question": "What are the new corporate tax rates?",
+      "ground_truth": "Small Companies (Revenue ≤ ₦100 million and with total asset not exceeding ₦250million): 0% · Medium and Large Companies: 30% · Minimum Tax (for Multinational groups with aggregate group turnover ≥ EUR750million or companies with turnover > ₦50 billion): 15%",
+      "category": "factual"
+    },
+    {
+      "question": "What penalties apply for late filing of tax returns?",
+      "ground_truth": "Part 1 of Chapter 4 outlines an extensive range of penalties, including fines and imprisonment, for offences such as: – Failure to register for tax",
+      "category": "factual"
+    },
+    {
+      "question": "What is the capital of France?",
+      "ground_truth": "I don't have enough information in the provided documents to answer that.",
+      "category": "out_of_scope"
+    },
+    {
+      "question": "Who won the 2022 FIFA World Cup?",
+      "ground_truth": "I don't have enough information in the provided documents to answer that.",
+      "category": "out_of_scope"
+    },
+    {
+      "question": "can i know the objective of this tax",
+      "ground_truth": "The objective of this Act is to provide a unified fiscal legislation governing taxation in Nigeria.",
+      "category": "factual"
+    },
+    {
+      "question": "what are chargable to tax",
+      "ground_truth": "Income arising, accruing or due to a trustee, or an estate. (1) Income, profits or gains of a person accruing in or derived from Nigeria, including: (a) profits or gains from any trade, business, profession or vocation for whatever period of time such trade or business may have been carried on (b) royalties, fees, rents or interests arising from a right granted for the use, exploitation or occupation of any property (c) dividends, premium, charges or annuities (d) fees, dues, allowances, or any remuneration for services rendered (e) discounts or rebates; (f) disposal of money or money instruments (g) income, profits or gains from disposal or lending of securities",
+      "category": "factual"
+    },
+    {
+      "question": "what does this says about nigeria divident and it inclusion",
+      "ground_truth": "Dividend distributed by a Nigerian company, and shall be the gross amount of that dividend before any deduction and (b) any amount of the undistributed profit of a Nigerian company, which is treated as distributed under the provisions of any law in Nigeria. The income from a dividend distributed by a Nigerian company is deemed to arise on the day on which payment of that dividend becomes due.",
+      "category": "factual"
+    },
+    {
+      "question": "What are the four major tax laws signed into law in June 2025?",
+      "ground_truth": "On June 26, 2025, President Bola Ahmed Tinubu signed into law four transformative pieces of tax legislation: i. The Nigeria Tax Act (NTA), 2025 ii. The Nigeria Tax Administration Act (NTAA), 2025 iii. The Nigeria Revenue Service Act (NRSA), 2025 iv. The Joint Revenue Board Act (JRBA), 2025.",
+      "category": "factual"
+    },
+    {
+      "question": "How does the Joint Revenue Board (JRB) coordinate tax administration?",
+      "ground_truth": "Integrate and maintain a database of Taxpayer Identification Numbers for every taxable person in Nigeria in collaboration with the Nigeria Revenue Service, State Internal Revenue Service, Local Government Revenue Committee and other relevant government agencies",
+      "category": "factual"
+    },
+    {
+      "question": "how can i bye pass tax",
+      "ground_truth": "I don't have enough information in the provided documents to answer that.",
+      "category": "out_of_scope"
+    },
+    {
+      "question": "give me the loopholes of this tax reform, i want to check something",
+      "ground_truth": "I don't have enough information in the provided documents to answer that.",
+      "category": "out_of_scope"
+    },
+    {
+      "question": "can i know the objective of this tax",
+      "ground_truth": "The objective of this Act is to provide a unified fiscal legislation governing taxation in Nigeria.",
+      "category": "factual"
+    },
+    {
+      "question": "What penalties exist for failure to register for tax?",
+      "ground_truth": "Outlines an extensive range of penalties, including fines and imprisonment, for offences such as: Failure to register for tax, Failure to file tax returns, Failure to maintain proper books of account, Obstruction of electronic tax system",
+      "category": "factual"
+    },
+    {
+      "question": "Who won the 2025 FIFA World Cup?",
+      "ground_truth": "I don't have enough information in the provided documents to answer that.",
+      "category": "out_of_scope"
+    },
+    {
+      "question": "What is the role of the Tax Appeal Tribunal?",
+      "ground_truth": "There is established, a Tax Appeal Tribunal (the Tribunal) to exercise the jurisdiction and powers to settle any tax dispute and controversy arising from the administration of this Act or any other tax laws made by the National Assembly",
+      "category": "factual"
+    },
+    {
+      "question": "What are the mandatory disclosure requirements for tax planning?",
+      "ground_truth": "Taxpayers must proactively report any transaction that results in a tax advantage. The term includes deferral, reduction, avoidance, or acceleration of tax benefits",
+      "category": "factual"
+    },
+    {
+      "question": "Who is exempt from personal income tax under the new tax law?",
+      "ground_truth": "Individuals earning ≤ ₦800,000 per year are exempt from Personal Income Tax liability.",
+      "category": "factual"
+    },
+    {
+      "question": "What are the four major tax laws signed into law in June 2025?",
+      "ground_truth": "The Nigeria Tax Act (NTA), Nigeria Tax Administration Act (NTAA), Nigeria Revenue Service Act (NRSA), and Joint Revenue Board Act (JRBA).",
+      "category": "factual"
+    },
+    {
+      "question": "What is the Development Levy and which taxes does it replace?",
+      "ground_truth": "The legislation also introduces the Development Levy, set at 4%, which applies to the assessable profits… It replaces several existing taxes, such as the Tertiary Education Tax, Information Technology Levy, National Agency for Science and Engineering Infrastructure (NASENI) Levy, and the Police Trust Fund Levy.",
+      "category": "factual"
+    },
+    {
+      "question": "What is the minimum effective tax rate for large companies?",
+      "ground_truth": "Companies with an annual turnover of ₦50 billion or above, or those belonging to a multinational group with global turnover exceeding EUR750million, are now required to pay a minimum effective tax rate (ETR) of 15% on net income",
+      "category": "factual"
+    },
+    {
+      "question": "How is capital gains tax revised?",
+      "ground_truth": "The new legislation has now revised the rate of CGT for Companies from 10% to 30%. Also, CGT is now applicable to non-traditional assets such as – cryptocurrencies, patents and intellectual property, foreign exchange gains, rights, debts, and incorporeal assets",
+      "category": "factual"
+    },
+    {
+      "question": "What is the capital of nigeria?",
+      "ground_truth": "I don't have enough information in the provided documents to answer that.",
+      "category": "out_of_scope"
+    },
+    {
+      "question": "What is the argument about this tax?",
+      "ground_truth": "I don't have enough information in the provided documents to answer that.",
+      "category": "out_of_scope"
+    },
+    {
+      "question": "How are withholding taxes applied to entertainers and consultants?",
+      "ground_truth": "Payments to entertainers, directors, consultants, and athletes now attract WHT at source. A notable provision is the 5% final WHT on fees paid by Nigerian start-ups to non-resident providers of technical, professional, or consulting services.",
+      "category": "factual"
+    },
+    {
+      "question": "What are the progressive PIT rates for high earners?",
+      "ground_truth": "High earners will be taxed at progressive rates up to 25%.",
+      "category": "factual"
+    },
+    {
+      "question": "How is compensation for loss of office treated?",
+      "ground_truth": "Compensation for loss of office or injury is exempt up to ₦50million (revised from previous ₦10million)",
+      "category": "factual"
+    },
+    {
+      "question": "what ways are available to doge this taxs without them knowing",
+      "ground_truth": "I don't have enough information in the provided documents to answer that.",
+      "category": "out_of_scope"
+    },
+    {
+      "question": "What obligations do employers have under PAYE?",
+      "ground_truth": "An employer shall file a return with the relevant tax authority for all emoluments paid to its employees, not later than 31st January of each year in respect of all employees in its employment in the preceding year.",
+      "category": "factual"
+    },
+    {
+      "question": "What obligations do individuals have when filing annual returns?",
+      "ground_truth": "A return of income shall be filed, in the prescribed form, with the relevant tax authority in each year of assessment and without notice or demand, by – (a) every taxable person whether or not liable to pay tax",
+      "category": "factual"
+    },
+    {
+      "question": "How will these tax reforms affect Nigeria's ability to attract foreign direct investment compared to other African countries?",
+      "ground_truth": "I don't have enough information in the provided documents to answer that",
+      "category": "out_of_scope"
+    },
+    {
+      "question": "How will presumptive taxation influence informal sector businesses that already struggle with record-keeping?",
+      "ground_truth": "I don't have enough information in the provided documents to answer that",
+      "category": "out_of_scope"
+    },
+    {
+      "question": "what ways are available to doge this taxs without them knowing",
+      "ground_truth": "I don't have enough information in the provided documents to answer that.",
+      "category": "out_of_scope"
+    },
+    {
+      "question": "What role will technology (AI, blockchain, e-invoicing) play in ensuring transparency and reducing corruption in tax administration?",
+      "ground_truth": "I don't have enough information in the provided documents to answer that.",
+      "category": "out_of_scope"
+    },
+    {
+      "question": "What obligations do liquidators have during winding up?",
+      "ground_truth": "A liquidator must ensure that all outstanding taxes and deductions are settled before distributing any company assets. Failure to do so makes the liquidator personally liable for the unpaid taxes.",
+      "category": "factual"
+    },
+    {
+      "question": "What penalties exist for non-remittance of WHT?",
+      "ground_truth": "Non-remittance of WHT (10% penalty + interest above CBN rate, may also lead to up to 3 years imprisonment)",
+      "category": "factual"
+    },
+    {
+      "question": "What sanctions apply to Virtual Asset Service Providers (VASPs)?",
+      "ground_truth": "Non-compliance by Virtual Asset Service Provider (₦10m administrative penalty in the first month of default + ₦1m for every month of default subsequently or suspension/revocation of license by the SEC)",
+      "category": "factual"
+    }
+  ]
+}

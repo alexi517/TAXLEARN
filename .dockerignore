@@ -1,0 +1,29 @@
+# .dockerignore — keeps these OUT of the Docker image.
+# Same idea as .gitignore, but for Docker builds. Prevents bloat and secret leaks.
+
+# secrets — NEVER bake keys into an image
+.env
+
+# virtual environment — the image builds its own deps, doesn't need yours
+venv/
+RaG/
+
+# generated vector store — rebuilt/mounted separately, and it's bulky
+chroma_db/
+
+# python cruft
+__pycache__/
+*.pyc
+
+# git and editor
+.git/
+.gitignore
+.vscode/
+.idea/
+
+# the raw documents (bulky; not needed baked into the API image)
+data/
+
+# OS files
+.DS_Store
+Thumbs.db
