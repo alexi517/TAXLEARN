@@ -1,138 +1,286 @@
-# TaxLearn — Production RAG with Evaluation
+TaxLearn
 
-### Ask anything about Nigeria's 2025 tax laws — grounded, cited, clear.
+Production-oriented RAG system for Nigeria's 2025 tax legislation.
 
-A conversational retrieval-augmented generation (RAG) system that answers questions about Nigeria's 2025 tax laws in plain English, grounded in the official legislation with cited sources. Built with table-aware ingestion, hybrid retrieval, cross-encoder reranking, and a RAGAS evaluation harness — served through a streaming chat interface and a FastAPI backend.
+TaxLearn is an end-to-end Retrieval-Augmented Generation (RAG) application that answers questions about Nigeria's 2025 tax laws using the source legislation as its knowledge base.
 
-**🔗 Live demo:** https://taxlearngit-czfepmz77agmutui54srz3.streamlit.app/
-**📂 Code:** https://github.com/alexi517/TAXLEARN
+It combines hybrid retrieval, cross-encoder reranking, conversational query processing, grounding guardrails, and RAG evaluation to prioritize reliable answers over simple LLM responses.
 
----
-
-## What it does
-
-Nigeria overhauled its tax system in 2025 (the Nigeria Tax Act, Tax Administration Act, and related laws). TaxLearn lets anyone ask natural-language questions — *"Who is exempt from personal income tax?"*, *"What is the Tertiary Education Tax rate?"* — and returns answers grounded strictly in the official documents, with sources shown for every answer. Follow-up questions work conversationally. If a question falls outside the documents, it says so rather than hallucinating.
+🟢 Live Demo: "Streamlit" (https://taxlearngit-czfepmz77agmutui54srz3.streamlit.app/)
+📂 Source Code: "GitHub" (https://github.com/alexi517/TAXLEARN)
 
 ---
 
-## Why it's built the way it is
+💼 Project Highlights
 
-This project prioritises **retrieval quality and evaluation rigour** over simply wiring up an LLM. The key engineering decisions:
-
-- **Table-aware ingestion.** Tax documents are full of rate schedules and tables that standard PDF parsers garble. Ingestion uses LlamaParse to convert documents (tables intact) into clean Markdown, then splits on Markdown structure — so rate tables survive into retrieval rather than being cut mid-table.
-
-- **Hybrid retrieval (semantic + keyword).** Dense embeddings are fuzzy on exact terms like section numbers and named taxes; BM25 keyword search misses paraphrase. TaxLearn runs both and fuses them with Reciprocal Rank Fusion, catching meaning-based *and* exact-term matches.
-
-- **Cross-encoder reranking.** Initial retrieval casts a wide net for recall; a cross-encoder then re-scores candidates by true relevance and keeps only the best few for precision. This directly targets the noisy-retrieval weakness measured in baseline evaluation.
-
-- **Conversational memory via query condensation.** Follow-ups like *"what about companies?"* are meaningless to retrieval alone. Before retrieving, the conversation history and new question are condensed into a standalone query — so follow-ups retrieve correctly.
-
-- **Grounding guardrails.** The system prompt constrains answers to retrieved context and requires refusal when information isn't present — verified with out-of-scope test cases in the evaluation set.
-
----
-
-## Architecture
-
-```
-                          INGESTION (run once)
-  PDFs ──► LlamaParse ──► Markdown chunking ──► embed (BGE) ──► Chroma
-        (tables preserved)
-
-                          QUERY (per message)
-  Question + history ──► condense to standalone query
-                              │
-        ┌─────────────────────┴─────────────────────┐
-        ▼                                           ▼
-  Dense retrieval (semantic)              BM25 retrieval (keyword)
-        └─────────────────► RRF fusion ◄────────────┘
-                              │
-                     Cross-encoder rerank
-                              │
-                   Grounding prompt ──► LLM ──► streamed, cited answer
-
-  Interfaces:  Streamlit chat (threads, streaming)  ·  FastAPI /query
-```
+- 🔎 Hybrid retrieval: Dense embeddings + BM25 + Reciprocal Rank Fusion
+- 🎯 Reranking: Cross-encoder relevance scoring
+- 📊 Evaluation: RAGAS evaluation with ~40 manually verified questions
+- 📄 Document intelligence: Table-aware ingestion for legislation and tax schedules
+- 🛡️ Grounding: Answers are constrained to retrieved source material
+- 🚫 Hallucination control: Refuses questions outside the indexed knowledge base
+- 💬 Conversational RAG: Query condensation for follow-up questions
+- ⚙️ Backend: FastAPI API with interactive Swagger documentation
+- 🖥️ Application: Streaming Streamlit interface
+- 🐳 Deployment: Dockerized API
 
 ---
 
-## Evaluation
+🏗️ Architecture
 
-Retrieval and answer quality are measured with **RAGAS** against a hand-written evaluation set of ~40 questions (factual, table-based, and out-of-scope), with ground-truth answers verified against the source documents.
+                    DOCUMENT INGESTION
 
-**Baseline — dense retrieval only:**
+Official Tax PDFs
+       │
+       ▼
+  LlamaParse
+       │
+       ▼
+Table-aware Markdown
+       │
+       ▼
+    Chunking
+       │
+       ▼
+BGE Embeddings
+       │
+       ▼
+   ChromaDB
 
-| Metric | Score |
-|---|---|
-| Faithfulness | 0.76 |
-| Answer Relevancy | 0.76 |
-| Context Precision | 0.46 |
-| Context Recall | 0.69 |
 
-The baseline shows a well-grounded system (high faithfulness) with noisy retrieval (low context precision) — which motivated the hybrid-retrieval and reranking work.
+                    QUERY PIPELINE
 
-**After hybrid retrieval + reranking:** `measurement in progress`
-
-> **Honest note on the baseline:** these figures come from a run in which ~71% of scoring calls completed (the remainder timed out on free-tier LLM rate limits), so they are directional rather than definitive. A full clean re-run on the improved system is pending and will replace this section with a complete before/after comparison.
+User Question
+       │
+       ▼
+Query Condensation
+       │
+       ├───────────────┐
+       ▼               ▼
+Dense Retrieval    BM25 Retrieval
+       │               │
+       └───────┬───────┘
+               ▼
+          RRF Fusion
+               │
+               ▼
+      Cross-Encoder Rerank
+               │
+               ▼
+      Grounded LLM Prompt
+               │
+               ▼
+        Cited Answer
 
 ---
 
-## Tech stack
+🔬 Key Engineering Decisions
 
-**Retrieval & generation:** LlamaIndex · LlamaParse · ChromaDB · BGE embeddings · BM25 · cross-encoder reranker · Groq (Llama 3.3)
-**Evaluation:** RAGAS
-**Serving:** Streamlit (chat UI) · FastAPI (API) · Docker
-**Language:** Python
+Hybrid Retrieval
+
+Legal documents contain both semantic concepts and exact terminology such as section numbers, tax names, and rates.
+
+TaxLearn combines:
+
+Dense retrieval for semantic similarity
++
+BM25 for exact keyword matching
+↓
+Reciprocal Rank Fusion
+
+This provides a broader retrieval signal than relying on a single retrieval strategy.
+
+Cross-Encoder Reranking
+
+Retrieved candidates are reranked using a cross-encoder before being passed to the LLM.
+
+This separates:
+
+Recall → Reranking → Precision
+
+Table-Aware Ingestion
+
+Tax legislation contains important tables and schedules.
+
+Instead of relying on basic PDF text extraction, documents are parsed with LlamaParse and converted into structured Markdown before chunking so that table information remains usable during retrieval.
+
+Conversational Retrieval
+
+Follow-up questions such as:
+
+«"What about companies?"»
+
+can lack context when searched independently.
+
+TaxLearn uses conversation history to transform follow-up questions into standalone retrieval queries.
+
+Grounding & Refusal
+
+The generation layer is instructed to use retrieved evidence and avoid unsupported claims.
+
+Questions outside the indexed corpus are refused rather than answered from model knowledge.
 
 ---
 
-## Running locally
+📊 Evaluation
 
-```bash
-# 1. clone
-git clone https://github.com/alexi517/TAXLEARN.git && cd TAXLEARN
+TaxLearn includes a RAGAS evaluation harness with approximately 40 manually verified questions covering factual, table-based, retrieval-sensitive, and out-of-scope queries.
 
-# 2. environment
+Baseline — Dense Retrieval
+
+Metric| Score
+Faithfulness| 0.76
+Answer Relevancy| 0.76
+Context Recall| 0.69
+Context Precision| 0.46
+
+The baseline identified context precision as the main retrieval weakness.
+
+That result drove the move from dense-only retrieval toward:
+
+Dense Retrieval
+      ↓
+Evaluation
+      ↓
+Identify Retrieval Noise
+      ↓
+Hybrid Retrieval + RRF
+      ↓
+Cross-Encoder Reranking
+      ↓
+Re-evaluation
+
+The improved pipeline is currently being evaluated. No unverified improvement figures are claimed.
+
+«Evaluation note: approximately 71% of the baseline scoring calls completed because of free-tier LLM rate limits. Results should therefore be treated as directional rather than a definitive benchmark.»
+
+---
+
+🖥️ Application
+
+The deployed application provides:
+
+- Streaming AI responses
+- Source-grounded answers
+- Citations
+- Conversational follow-ups
+- Out-of-scope refusal
+- FastAPI access
+
+Live Demo
+
+https://taxlearngit-czfepmz77agmutui54srz3.streamlit.app/
+
+---
+
+🛠️ Tech Stack
+
+AI / Retrieval
+
+"LlamaIndex" "LlamaParse" "BGE Embeddings" "ChromaDB" "BM25" "RAGAS" "Cross-Encoder"
+
+Backend / Application
+
+"Python" "FastAPI" "Streamlit"
+
+LLM
+
+"Groq" "Llama 3.3"
+
+Infrastructure
+
+"Docker" "Git"
+
+---
+
+🚀 Run Locally
+
+git clone https://github.com/alexi517/TAXLEARN.git
+cd TAXLEARN
+
 python -m venv venv
-source venv/bin/activate        # Windows: venv\Scripts\Activate.ps1
+source venv/bin/activate
 
-# 3. install
 pip install -r requirements.txt
 
-# 4. add keys to a .env file (see .env.example)
-#    GROQ_API_KEY=...
-#    LLAMA_CLOUD_API_KEY=...   (ingestion only)
+Create ".env":
 
-# 5. ingest documents (builds chroma_db/)
+GROQ_API_KEY=your_key
+LLAMA_CLOUD_API_KEY=your_key
+
+Build the knowledge base:
+
 python src/ingest.py
 
-# 6a. chat interface
+Run Streamlit:
+
 streamlit run app2.py
 
-# 6b. or the API
-uvicorn src.api:app --reload      # docs at http://127.0.0.1:8000/docs
-```
+Or run the API:
 
-**Docker (API):**
-```bash
+uvicorn src.api:app --reload
+
+API documentation:
+
+http://127.0.0.1:8000/docs
+
+Docker
+
 docker build -t taxlearn .
 docker run -p 8000:8000 --env-file .env taxlearn
-```
-
-> **Data:** source documents are not committed. The corpus is Nigeria's 2025 tax reform legislation (Nigeria Tax Act, Tax Administration Act, Nigeria Revenue Service Act, Joint Revenue Board Act) plus the explanatory memorandum, available from official sources including nrs.gov.ng.
 
 ---
 
-## Limitations & next steps
+⚠️ Limitations
 
-- **Corpus scope:** covers the 2025 tax reform acts and key supporting documents; not exhaustive of all Nigerian tax law or later amendments.
-- **Agency transition:** documents reflect the FIRS → Nigeria Revenue Service (NRS) rename; ingesting newer NRS-era publications is future work.
-- **Evaluation:** a full clean before/after RAGAS run on the improved system is pending (see note above).
-- **Latency:** the deployed demo runs on free-tier CPU, so the first query after idle is slow (cold start plus reranker warm-up). Retrieval breadth and reranker size were tuned for latency; the quality cost of that tuning is to be verified against the evaluation set.
-- **Persistence:** conversation threads are session-scoped; there is no cross-session storage or user accounts.
-- **Possible extensions:** passage-level citation highlighting, expanding to state-level tax rules, caching frequent queries.
+- Current corpus focuses on selected 2025 Nigerian tax reform legislation.
+- It is not an exhaustive database of Nigerian tax law.
+- New amendments and publications require re-ingestion.
+- Public deployment runs on free-tier infrastructure and may experience cold-start latency.
+- Conversations are currently session-based.
+- The system should not be treated as professional tax or legal advice.
 
 ---
 
-## What I learned building this
+🔮 Future Improvements
 
-Retrieval quality — not the language model — is where most RAG systems succeed or fail. Building the evaluation harness turned a vague sense that "it seems to work" into a concrete, measurable weakness (context precision of 0.46), which pointed directly at the fix. Every subsequent improvement decision — hybrid retrieval, reranking, and later latency tuning — became a data-driven trade-off rather than guesswork.
+- Complete before/after retrieval benchmark
+- Passage-level citation highlighting
+- Larger evaluation dataset
+- Retrieval caching
+- Persistent conversations
+- User authentication
+- Automated detection of updated legislation
+- Expanded state-level tax coverage
+
+---
+
+🎓 What This Project Demonstrates
+
+TaxLearn demonstrates an end-to-end AI engineering workflow:
+
+Problem
+  ↓
+Data Ingestion
+  ↓
+Retrieval Architecture
+  ↓
+LLM Integration
+  ↓
+Evaluation
+  ↓
+Reliability Guardrails
+  ↓
+API + Application
+  ↓
+Docker Deployment
+
+The project focuses on measuring and improving AI system behavior, rather than treating an LLM response as the finished product.
+
+---
+
+👨‍💻 Alex Moses
+
+AI Engineer | Generative AI • RAG • AI Agents • Production Applications
+
+"GitHub" (https://github.com/alexi517) · "LinkedIn" (https://linkedin.com/in/moses-alex)
