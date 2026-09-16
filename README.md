@@ -7,9 +7,6 @@ TaxLearn is an end-to-end Retrieval-Augmented Generation (RAG) application that 
 It combines hybrid retrieval, cross-encoder reranking, conversational query processing, grounding guardrails, and RAG evaluation to prioritize reliable answers over simple LLM responses.
 
 🟢 Live Demo: "Streamlit" (https://taxlearngit-czfepmz77agmutui54srz3.streamlit.app/)
-📂 Source Code: "GitHub" (https://github.com/alexi517/TAXLEARN)
-
----
 
 💼 Project Highlights
 
